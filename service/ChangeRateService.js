@@ -12,6 +12,7 @@ class ChangeRateService {
   }
 
   isValidCurrency(source, target) {
+    if (this.rate[source] === undefined) return false;
     return !!this.rate[source][target];
   }
 }

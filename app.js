@@ -12,7 +12,7 @@ app.get("/exchangeRate", (req, res) => {
     const { source, target, amount } = req.query;
 
     if (!source || !target || !amount) {
-      return res.status(400).json({ message: "Invalid input data" });
+      return res.status(400).json({ msg: "Invalid input data" });
     }
 
     const changedAmount = changeRateService.changeRateAmount(
@@ -22,12 +22,12 @@ app.get("/exchangeRate", (req, res) => {
     );
 
     if (changedAmount === null) {
-      res.status(400).json({ msg: "Please reference valid currencies" });
+      return res.status(400).json({ msg: "Please reference valid currencies" });
     }
 
     res.status(200).json({ msg: "Success", amount: changedAmount });
   } catch (error) {
-    res.status(500).json({ message: "Error occurs" });
+    res.status(500).json({ msg: "Error occurs" });
   }
 });
 

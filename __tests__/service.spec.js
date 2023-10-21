@@ -32,5 +32,20 @@ describe("ChangeRateService", () => {
         "$0.00"
       );
     });
+
+    it("should return true if the currency exists", () => {
+      const isValid = changeRateService.isValidCurrency("USD", "TWD");
+      expect(isValid).toBe(true);
+    });
+
+    it("should return false when the source does not exist", () => {
+      const isValid = changeRateService.isValidCurrency("RMB", "TWD");
+      expect(isValid).toBe(false);
+    });
+
+    it("should return false when the target does not exist", () => {
+      const isValid = changeRateService.isValidCurrency("TWD", "RMB");
+      expect(isValid).toBe(false);
+    });
   });
 });
